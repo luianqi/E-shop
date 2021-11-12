@@ -2,16 +2,15 @@ from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
-from products.models import \
-    Product, \
-    Comment, \
-    Reply, Category
+from products.models import Product, Comment, Reply, Category
 
 from products.permissions import IsAuthorOrReadOnly, IsSupplier
-from products.serializers import \
-    ProductSerializer, \
-    CommentSerializer, \
-    ReplySerializer, CategorySerializer
+from products.serializers import (
+    ProductSerializer,
+    CommentSerializer,
+    ReplySerializer,
+    CategorySerializer,
+)
 
 
 class ProductList(generics.ListCreateAPIView):

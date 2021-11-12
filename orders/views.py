@@ -8,7 +8,6 @@ from orders.serializers import OrderSerializer
 
 
 class OrderView(APIView):
-
     def post(self, request):
 
         cart = Cart.objects.filter(user=request.user).first()
@@ -21,19 +20,19 @@ class OrderView(APIView):
         total_price_with_discount = 0
         for item in cartitems:
             discounted_price = (
-                               Decimal(item.product.price) -
-                               Decimal((Decimal(item.product.price) * item.product.discount) / 100)
-                       ) * item.quantity
+                Decimal(item.product.price)
+                - Decimal((Decimal(item.product.price)
+                           * item.product.discount) / 100)) * item.quantity
             total_price_with_discount += discounted_price
 
         order = Order.objects.create(
             user=request.user,
             total_price=total_price,
-            total_price_with_discount=total_price_with_discount)
+            total_price_with_discount=total_price_with_discount
+        )
 
         cartitems.delete()
         cart.active = False
         cart.save()
         serializer = OrderSerializer(order)
         return Response(serializer.data)
-

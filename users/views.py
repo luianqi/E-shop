@@ -23,22 +23,23 @@ class LoginView(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
-        email = request.data['email']
-        password = request.data['password']
+        email = request.data["email"]
+        password = request.data["password"]
 
         user = NewUser.objects.filter(email=email).first()
 
         if user is None:
-            raise AuthenticationFailed('User not found!')
+            raise AuthenticationFailed("User not found!")
 
         if not user.check_password(password):
-            raise AuthenticationFailed('Incorrect password!')
+            raise AuthenticationFailed("Incorrect password!")
 
         refresh = RefreshToken.for_user(user)
 
         return Response(
             {
                 "status": "success",
-                'refresh': str(refresh),
-                'access': str(refresh.access_token)
-            })
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
+            }
+        )

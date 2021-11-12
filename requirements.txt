@@ -7,5 +7,6 @@ djangorestframework-simplejwt==5.0.0
 pyjwt==2.3.0
 python-decouple==3.5
 psycopg2==2.9.1
-
-
+black==21.10b0
+django-rest-framework-datatables-filter==0.0.2
+flake8==4.0.1

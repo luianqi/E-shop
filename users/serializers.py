@@ -10,13 +10,13 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NewUser
-        fields = ['username', 'email', 'password', 'role']
+        fields = ["username", "email", "password", "role"]
 
     def validate(self, attrs):
-        email = attrs.get('email', '')
+        email = attrs.get("email", "")
         if NewUser.objects.filter(email=email).exists():
             raise serializers.ValidationError(
-                {'email': ('Email is already in use')})
+                {"email": ("Email is already in use")})
         return super().validate(attrs)
 
     def create(self, validated_data):
@@ -26,4 +26,4 @@ class UserSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
-        fields = ['email', 'password', 'username']
+        fields = ["email", "password", "username"]

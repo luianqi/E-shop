@@ -10,7 +10,7 @@ class CartItemInputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = ['product_id', 'quantity']
+        fields = ["product_id", "quantity"]
 
 
 class CartItemOutputSerializer(serializers.ModelSerializer):
@@ -18,14 +18,12 @@ class CartItemOutputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CartItem
-        fields = ['product', 'quantity']
+        fields = ["product", "quantity"]
 
 
 class CartSerializer(serializers.ModelSerializer):
-    cartitems = CartItemOutputSerializer(many=True, source='cartitem_set')
+    cartitems = CartItemOutputSerializer(many=True, source="cartitem_set")
 
     class Meta:
         model = Cart
-        fields = ['cartitems']
-
-
+        fields = ["cartitems"]
