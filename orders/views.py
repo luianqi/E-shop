@@ -10,9 +10,9 @@ from orders.serializers import OrderSerializer
 class OrderView(APIView):
     def post(self, request):
 
-        cart = Cart.objects.filter(user=request.user).first()
-        print(cart)
-        cartitems = CartItem.objects.filter(cart=cart)
+        cart_id = Cart.objects.filter(user=request.user).first()
+        print(cart_id)
+        cartitems = CartItem.objects.filter(cart=cart_id)
         total_price = 0
         for item in cartitems:
             total_price += item.product.price * item.quantity
@@ -32,7 +32,7 @@ class OrderView(APIView):
         )
 
         cartitems.delete()
-        cart.active = False
-        cart.save()
+        cart_id.active = False
+        cart_id.save()
         serializer = OrderSerializer(order)
         return Response(serializer.data)

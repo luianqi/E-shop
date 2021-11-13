@@ -24,7 +24,7 @@ from orders.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("register/", RegisterView.as_view(), name="register"),
+    path("", RegisterView.as_view(), name="register"),
     path("login/", LoginView.as_view(), name="login"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("token/verify/", TokenVerifyView.as_view()),
@@ -36,7 +36,5 @@ urlpatterns = [
     path("reply-detail/<int:pk>/", ReplyDetail.as_view(), name="reply-detail"),
     path("category/", CategoryList.as_view(), name="category"),
     path("cart/", CartAdd.as_view(), name="add"),
-    # path('cart-detail/<int:pk>', CartDetail.as_view()),
     path("order/", OrderView.as_view())
-    # path('getorder/', OrderListView.as_view()),
 ]

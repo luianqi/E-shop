@@ -7,7 +7,7 @@ from products.models import Product
 class Cart(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    active = models.BooleanField(default=True)
+
 
 
 class CartItem(models.Model):
@@ -16,4 +16,5 @@ class CartItem(models.Model):
     )
     quantity = models.IntegerField(default=1, null=True, blank=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
 

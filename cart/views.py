@@ -9,7 +9,7 @@ from products.models import Product
 
 class CartAdd(APIView):
     def get(self, request):
-        cart = Cart.objects.filter(user=request.user, active=True).first()
+        cart = Cart.objects.filter(user=request.user).first()
         serializer = CartSerializer(cart)
         return Response(serializer.data)
 
