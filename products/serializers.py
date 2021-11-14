@@ -15,8 +15,14 @@ class ReplySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reply
-        fields = ["id", "comment", "author",
-                  "content", "rate", "creation_date"]
+        fields = [
+            "id",
+            "comment",
+            "author",
+            "content",
+            "rate",
+            "creation_date",
+        ]
 
     def create(self, validated_data):
 
@@ -94,16 +100,13 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
 
-        instance.title = validated_data.get(
-            "title", instance.title)
+        instance.title = validated_data.get("title", instance.title)
         instance.description = validated_data.get(
-            "description", instance.description)
-        instance.price = validated_data.get(
-            "price", instance.price)
-        instance.discount = validated_data.get(
-            "discount", instance.discount)
-        instance.supplier = validated_data.get(
-            "supplier", instance.supplier)
+            "description", instance.description
+        )
+        instance.price = validated_data.get("price", instance.price)
+        instance.discount = validated_data.get("discount", instance.discount)
+        instance.supplier = validated_data.get("supplier", instance.supplier)
         instance.save()
 
         return instance

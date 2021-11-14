@@ -35,6 +35,7 @@ urlpatterns = [
     path("reply-list/", ReplyList.as_view(), name="reply-list"),
     path("reply-detail/<int:pk>/", ReplyDetail.as_view(), name="reply-detail"),
     path("category/", CategoryList.as_view(), name="category"),
-    path("cart/", CartAdd.as_view(), name="add"),
-    path("order/", OrderView.as_view())
+    path("cart/", CartAdd.as_view(), name="cart"),
+    path("checkout/", OrderCreateView.as_view()),
+    path("orders/", OrderListView.as_view())
 ]

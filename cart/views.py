@@ -19,11 +19,12 @@ class CartAdd(APIView):
         if serializer.is_valid():
             cart = Cart.objects.filter(user=request.user).first()
             product = Product.objects.filter(
-                id=serializer.data["product_id"]).first()
+                id=serializer.data["product_id"]
+            ).first()
             cartitem = CartItem.objects.create(
                 product=product,
                 quantity=serializer.data["quantity"],
-                cart=cart
+                cart=cart,
             )
             serializer = CartItemInputSerializer(cartitem)
 
